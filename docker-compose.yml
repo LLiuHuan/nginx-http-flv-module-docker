@@ -1,0 +1,19 @@
+---
+version: 3.8
+
+services:
+  nginx-http-flv-module:
+    build: .
+    container_name: nginx
+    ports:
+      - 5239:80
+      - 1935:1935
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /opt/appdata/nginx:/www
+    restart: always
