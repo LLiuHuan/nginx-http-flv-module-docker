@@ -7,7 +7,7 @@ ARG HTTP_FLV_MODULE=9000
 
 ###################################################
 # Build this NGINX-build image.
-FROM alpine:3.15.3 as build-nginx
+FROM alpine:latest as build-nginx
 ARG NGINX_VERSION
 ARG NGINX_HTTP_FLV_MODULE
 
@@ -40,7 +40,7 @@ RUN \
 
 #######################################
 # Build the release image.
-FROM alpine:3.15.3
+FROM alpine:latest
 
 ARG HTTP_PORT
 ARG HTTPS_PORT
