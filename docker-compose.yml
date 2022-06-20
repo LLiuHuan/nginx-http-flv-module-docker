@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  nginx-http-flv-module:
+    build: .
+    container_name: nginx
+    ports:
+      - 39000:9000
+      - 31935:1935
+    volumes:
+      - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+    restart: always
