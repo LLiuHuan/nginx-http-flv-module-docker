@@ -52,7 +52,7 @@ ENV HTTPS_PORT ${HTTPS_PORT}
 ENV RTMP_PORT ${RTMP_PORT}
 ENV HTTP_FLV_MODULE ${HTTP_FLV_MODULE}
 
-RUN apk add --no-cache pcre-dev zlib-dev openssl openssl-dev gettext
+RUN apk add --no-cache pcre-dev zlib-dev openssl openssl-dev gettext ffmpeg
 
 COPY --from=build-nginx /usr/local/nginx /usr/local/nginx
 COPY --from=build-nginx /etc/nginx /etc/nginx
