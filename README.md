@@ -23,6 +23,21 @@
   `http://127.0.0.1:39000/stream?app=stream&stream=t55`
 ![image](./static/2.IINA.gif)  
 
+### Build images by workflow
+
+Automatically execute workflow, build Docker image, and upload Docker Hub when push tag is v*
+
+#### 1. Add secrets in this repo:
+
+  1. Add your Docker account and password in the settings -> secrets
+  ```
+  DOCKER_USERNAME is your Docker account
+  ACCESS_TOKEN is your Docker password
+  ```
+  
+
+#### 2. Push tag about v*
+
 ### References
 - https://github.com/alfg/docker-nginx-rtmp/blob/master/Dockerfile
 - https://github.com/nginxinc/docker-nginx/blob/6f0396c1e06837672698bc97865ffcea9dc841d5/mainline/alpine-perl/Dockerfile

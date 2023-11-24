@@ -23,6 +23,20 @@
   `http://127.0.0.1:39000/stream?app=stream&stream=t55`
 ![image](./static/2.IINA.gif)  
 
+### 通过工作流自动构建镜像
+当 push 标签为v* 时自动执行工作流,构建 Docker 镜像并上传到 Docker Hub
+
+#### 1. 在本仓库中添加 secrets:
+
+1. 在 settings -> secrets 中添加你的 Docker 账号和密码
+
+```
+DOCKER_USERNAME 是你的 Docker 账号
+ACCESS_TOKEN 是你的 Docker 密码
+```
+
+2. 推送关于 v* 的标签
+
 ### 参考
 - https://github.com/alfg/docker-nginx-rtmp/blob/master/Dockerfile
 - https://github.com/nginxinc/docker-nginx/blob/6f0396c1e06837672698bc97865ffcea9dc841d5/mainline/alpine-perl/Dockerfile
