@@ -1,5 +1,5 @@
-ARG NGINX_VERSION=1.21.6
-ARG NGINX_HTTP_FLV_MODULE=1.2.10
+ARG NGINX_VERSION=1.24.0
+ARG NGINX_HTTP_FLV_MODULE=1.2.11
 ARG HTTP_PORT=80
 ARG HTTPS_PORT=443
 ARG RTMP_PORT=1935
@@ -53,7 +53,9 @@ ENV HTTPS_PORT ${HTTPS_PORT}
 ENV RTMP_PORT ${RTMP_PORT}
 ENV HTTP_FLV_MODULE ${HTTP_FLV_MODULE}
 
-RUN apk add --no-cache pcre-dev zlib-dev openssl openssl-dev gettext ffmpeg
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories\
+    && apk update \
+    && apk add --no-cache pcre-dev zlib-dev openssl openssl-dev gettext ffmpeg
 
 COPY --from=build-nginx /usr/local/nginx /usr/local/nginx
 COPY --from=build-nginx /etc/nginx /etc/nginx

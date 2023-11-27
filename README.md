@@ -2,12 +2,12 @@
  * @Description: 
  * @Author: LLiuHuan
  * @Date: 2022-04-11 16:30:02
- * @LastEditTime: 2022-06-20 13:22:39
+ * @LastEditTime: 2023-11-24 14:36:50
  * @LastEditors: LLiuHuan
 -->
 ### Introduce
 > 由于nginx-http-flv-module官方镜像是四年前的，想弄个最新版的，就自己打了一个包，这个项目仅作为保留使用  
-1. 本项目使用最新版 `nginx-http-flv-module` 目前版本为 `1.2.10`  
+1. 本项目使用最新版 `nginx-http-flv-module` 目前版本为 `1.2.11`  
 2. rtmp和http nginx 解析都为 stream
 
 ### Use
