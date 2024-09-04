@@ -1,4 +1,4 @@
-ARG NGINX_VERSION=1.24.0
+ARG NGINX_VERSION=1.26.2
 ARG NGINX_HTTP_FLV_MODULE=1.2.11
 ARG HTTP_PORT=80
 ARG HTTPS_PORT=443
@@ -62,8 +62,9 @@ COPY --from=build-nginx /etc/nginx /etc/nginx
 
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/sbin"
+RUN mkdir -p /opt/data && mkdir /www && mkdir -p /usr/local/nginx/rtmp
 COPY nginx.conf /etc/nginx/nginx.conf
-RUN mkdir -p /opt/data && mkdir /www
+COPY stat.xsl /usr/local/nginx/rtmp/stat.xsl
 # COPY static /www/static
 
 EXPOSE 80

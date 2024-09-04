@@ -2,13 +2,13 @@
  * @Description: 
  * @Author: LLiuHuan
  * @Date: 2022-04-11 16:30:02
- * @LastEditTime: 2024-04-06 15:45:59
+ * @LastEditTime: 2024-07-11 15:15:36
  * @LastEditors: LLiuHuan
 -->
 ### 介绍
 > nginx-http-flv-module官方镜像是四年前的，因项目需要弄个最新版  
 
-1. 本项目使用最新版 `nginx-http-flv-module` 目前版本为 `1.2.10`  
+1. 本项目使用最新版 `nginx-http-flv-module` 目前版本为 `1.2.11`  
 2. rtmp和http nginx 解析都为 stream，有需要可自行修改
 
 ### 使用
@@ -49,4 +49,3 @@ ACCESS_TOKEN 是你的 Docker 密码
 - https://blog.csdn.net/a_917/article/details/106709928
 - https://blog.csdn.net/Prinz_Corn/article/details/120746676
 - https://blog.csdn.net/xjcallen/article/details/107174374
-- 

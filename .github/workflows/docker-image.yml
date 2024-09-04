@@ -8,7 +8,7 @@ on:
 
 env:
   # 设置 docker 镜像名
-  IMAGE_NAME: nginx-http-flv
+  IMAGE_NAME: nginx-http-flv-module
 
 jobs:
   # 运行测试，如果需要的话，将注释取消掉并且修改为自己需要的内容
@@ -39,8 +39,13 @@ jobs:
       - uses: actions/checkout@v2
         # 构建镜像，指定镜像名
       - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME
-        # 登录到 dockerhub，使用 GitHub secrets 传入账号密码，密码被加密存储在 GitHub 服务器，添加方法见下图。
+        run: |
+          # 如果版本不带ffmpeg，打包之前将Dockerfile中的ffmpeg替换为空
+          if [[ "${{ github.ref }}" != "refs/tags/"* ]]; then
+            sed -i 's/ffmpeg//g' Dockerfile
+          fi
+          docker build . --file Dockerfile --tag $IMAGE_NAME
+          # 登录到 dockerhub，使用 GitHub secrets 传入账号密码，密码被加密存储在 GitHub 服务器，添加方法见下图。
       - name: Log into registry
         run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
@@ -63,7 +68,10 @@ jobs:
 
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
+
           # 设置镜像 id 和版本号
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          # 创建一个多平台构建环境
+          docker buildx create --name multi-platform --use --platform linux/amd64,linux/arm64 --driver docker-container
           # 进行 push
-          docker push $IMAGE_ID:$VERSION
+          docker buildx build --platform linux/arm64,linux/arm64/v8,linux/ppc64le,linux/amd64,linux/386 -t $IMAGE_ID:$VERSION . --push
