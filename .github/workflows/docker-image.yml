@@ -61,9 +61,6 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          # 设置镜像 id 和版本号
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-
           # 如果VERSION不带ffmpeg，打包之前将Dockerfile中的ffmpeg替换为空
           if [[ $VERSION != *"ffmpeg"* ]]; then
             sed -i 's/ffmpeg//g' Dockerfile
